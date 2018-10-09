@@ -61,13 +61,13 @@ class Graph:
     def tikz_code_gen(self):
 
         init_str = '\\documentclass{article}\n\n\\usepackage{tikz}\n\\usetikzlibrary{arrows.meta}\n\n\\begin{document}' \
-                   '\n\\begin{tikzpicture}\n\\begin{scope}[every node/.style={circle,thick,draw}]'
+                   '\n\\begin{tikzpicture}\n\n\\begin{scope}[every node/.style={circle,thick,draw}]'
 
         for vertex in self.vertex_set:
             init_str += '\n\t\\node (' + vertex[0] + ') at (' + vertex[1] + ',' + vertex[2] + ') {' \
                         + str(vertex[0]) + '};'
 
-        init_str += '\n\\end{scope}\n\\begin{scope}[>={Stealth[black]},\nevery node/.style={fill=white},\n' \
+        init_str += '\n\\end{scope}\n\n\\begin{scope}[>={Stealth[black]},\nevery node/.style={fill=white},\n' \
                     'every edge/.style={draw=red,very thick}]'
 
         for edge in self.edge_set:
@@ -93,4 +93,4 @@ vertices = vertices.ret_vertices()
 edges = EdgeSet('/Users/xandrumifsud/Desktop/test/e.csv')
 edges = edges.ret_edges()
 
-Graph('/Users/xandrumifsud/Desktop/test/code.txt', vertices, edges, directed=True)
+Graph('/Users/xandrumifsud/Desktop/test/code.tex', vertices, edges, directed=True)
