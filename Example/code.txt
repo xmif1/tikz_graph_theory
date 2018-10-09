@@ -1,0 +1,29 @@
+\documentclass{article}
+
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta}
+
+\begin{document}
+\begin{tikzpicture}
+\begin{scope}[every node/.style={circle,thick,draw}]
+	\node (1) at (2,4) {1};
+	\node (2) at (0,2) {2};
+	\node (3) at (2,0) {3};
+	\node (4) at (5,3) {4};
+	\node (5) at (5,2) {5};
+	\node (6) at (5,1) {6};
+	\node (7) at (3,2) {7};
+\end{scope}
+\begin{scope}[>={Stealth[black]},
+every node/.style={fill=white,circle},
+every edge/.style={draw=red,very thick}]
+	\path [->] (1) edge (2);
+	\path [->] (2) edge (7);
+	\path [->] (7) edge (3);
+	\path [->] (7) edge (5);
+	\path [->] (7) edge (4);
+	\path [->] (7) edge (6);
+\end{scope}
+
+\end{tikzpicture}
+\end{document}
