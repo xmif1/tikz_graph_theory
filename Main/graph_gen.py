@@ -11,7 +11,7 @@ class VertexSet:
 
     def _fetch(self, file_path):
 
-        with open(file_path, 'rb') as csvfile:
+        with open(file_path, 'r') as csvfile:
             fetched = csv.reader(csvfile, delimiter=',', quotechar='|')
 
             for row in fetched:
@@ -32,7 +32,7 @@ class EdgeSet:
 
     def _fetch(self, file_path):
 
-        with open(file_path, 'rb') as csvfile:
+        with open(file_path, 'r') as csvfile:
             fetched = csv.reader(csvfile, delimiter=',', quotechar='|')
 
             for row in fetched:
@@ -60,28 +60,28 @@ class Graph:
 
     def tikz_code_gen(self):
 
-        init_str = '\documentclass{article}\n\n\usepackage{tikz}\n\usetikzlibrary{arrows.meta}\n\n\\begin{document}' \
+        init_str = '\\documentclass{article}\n\n\\usepackage{tikz}\n\\usetikzlibrary{arrows.meta}\n\n\\begin{document}' \
                    '\n\\begin{tikzpicture}\n\\begin{scope}[every node/.style={circle,thick,draw}]'
 
         for vertex in self.vertex_set:
-            init_str += '\n\t\\node (' + str(vertex[0]) + ') at (' + str(vertex[1]) + ',' + str(vertex[2]) + ') {' \
+            init_str += '\n\t\\node (' + vertex[0] + ') at (' + vertex[1] + ',' + vertex[2] + ') {' \
                         + str(vertex[0]) + '};'
 
-        init_str += '\n\end{scope}\n\\begin{scope}[>={Stealth[black]},\nevery node/.style={fill=white,circle},\n' \
+        init_str += '\n\\end{scope}\n\\begin{scope}[>={Stealth[black]},\nevery node/.style={fill=white,circle},\n' \
                     'every edge/.style={draw=red,very thick}]'
 
         for edge in self.edge_set:
-            init_str += '\n\t\\path [' + self.edge_format + '] (' + str(edge[0]) + ') edge'
+            init_str += '\n\t\\path [' + self.edge_format + '] (' + edge[0] + ') edge'
 
-            if str(edge[2]) is not '':
-                init_str += '[' + str(edge[2]) + ']'
+            if edge[3] is not '':
+                init_str += '[' + edge[3] + ']'
 
-            if str(edge[3]) is not '':
-                init_str += ' node {$' + str(edge[3]) + '$}'
+            if edge[2] is not '':
+                init_str += ' node {$' + edge[2] + '$}'
 
-            init_str += ' (' + str(edge[1]) + ');'
+            init_str += ' (' + edge[1] + ');'
 
-        init_str += '\n\end{scope}\n\n\end{tikzpicture}\n\end{document}'
+        init_str += '\n\\end{scope}\n\n\\end{tikzpicture}\n\\end{document}'
 
         with open(self.write_loc, 'w') as textfile:
             textfile.write(init_str)
