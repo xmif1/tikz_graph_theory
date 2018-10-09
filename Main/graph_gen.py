@@ -67,7 +67,7 @@ class Graph:
             init_str += '\n\t\\node (' + vertex[0] + ') at (' + vertex[1] + ',' + vertex[2] + ') {' \
                         + str(vertex[0]) + '};'
 
-        init_str += '\n\\end{scope}\n\\begin{scope}[>={Stealth[black]},\nevery node/.style={fill=white,circle},\n' \
+        init_str += '\n\\end{scope}\n\\begin{scope}[>={Stealth[black]},\nevery node/.style={fill=white},\n' \
                     'every edge/.style={draw=red,very thick}]'
 
         for edge in self.edge_set:

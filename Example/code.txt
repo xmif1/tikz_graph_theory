@@ -15,14 +15,15 @@
 	\node (7) at (3,2) {7};
 \end{scope}
 \begin{scope}[>={Stealth[black]},
-every node/.style={fill=white,circle},
+every node/.style={fill=white},
 every edge/.style={draw=red,very thick}]
-	\path [->] (1) edge (2);
-	\path [->] (2) edge (7);
-	\path [->] (7) edge (3);
-	\path [->] (7) edge (5);
-	\path [->] (7) edge (4);
-	\path [->] (7) edge (6);
+	\path [->] (1) edge node {$0.1$} (2);
+	\path [->] (2) edge node {$0.1$} (7);
+	\path [->] (7) edge node {$0.5$} (3);
+	\path [->] (7) edge node {$1.0$} (5);
+	\path [->] (7) edge node {$0.2$} (4);
+	\path [->] (7) edge node {$0.3$} (6);
+	\path [->] (1) edge[bend right=60] node {$0.8$} (6);
 \end{scope}
 
 \end{tikzpicture}
